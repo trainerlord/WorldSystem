@@ -1,0 +1,17 @@
+name: WorldSystem
+main: net.trainerlord.worldsystem.WorldSystem
+version: 2.5.0
+api-version: 1.17
+commands:
+ ws:
+  description: The main Command for WorldSystem
+  permissionMessage: 'You do not have permission!'
+permissions:
+ ws.*:
+  description: allows access to all WorldSystem Commands
+  default: op
+  children:
+   ws.get: true
+ ws.get:
+  description: allows access to create worldSystem worlds
+  default: true
