@@ -1,10 +1,10 @@
-package net.trainerlord.worldsystem.commands;
+package main.java.net.trainerlord.worldsystem.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import net.trainerlord.worldsystem.commands.players.CommandGet;
+import main.java.net.trainerlord.worldsystem.commands.players.CommandGet;
 
 public class CommandRegistery implements CommandExecutor
 {

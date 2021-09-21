@@ -1,4 +1,4 @@
-package net.trainerlord.worldsystem.commands.players;
+package main.java.net.trainerlord.worldsystem.commands.players;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

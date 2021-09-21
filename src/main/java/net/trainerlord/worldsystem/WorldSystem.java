@@ -1,8 +1,9 @@
-package net.trainerlord.worldsystem;
+package main.java.net.trainerlord.worldsystem;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import net.trainerlord.worldsystem.commands.CommandRegistery;
+import main.java.net.trainerlord.worldsystem.commands.CommandRegistery;
+import main.java.net.trainerlord.worldsystem.commands.WorldSystemCommandTabComplete;
 
 public class WorldSystem extends JavaPlugin
 {
@@ -17,6 +18,7 @@ public class WorldSystem extends JavaPlugin
 	{
 		// Registers all the commands Used by this plugin
 		getCommand("ws").setExecutor(new CommandRegistery());
+		getCommand("ws").setTabCompleter(new WorldSystemCommandTabComplete());
 	}
 	
 	
