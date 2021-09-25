@@ -3,11 +3,13 @@ package main.java.net.trainerlord.worldsystem.objects;
 import java.util.List;
 
 public class PlayerWorldsObject {
+	
+	
 	private List<WorldOwnersObject> WorldOwners;
 
 	public PlayerWorldsObject(List<WorldOwnersObject> worldOwners) {
 		super();
-		WorldOwners = worldOwners;
+		this.WorldOwners = worldOwners;
 	}
 
 	public List<WorldOwnersObject> getWorldOwners() {
@@ -20,26 +22,33 @@ public class PlayerWorldsObject {
 	
 	public void addWorldOwner(WorldOwnersObject newOwner) {
 		for(WorldOwnersObject member : WorldOwners) {
-			if (member.getOwner() == newOwner.getOwner())
+			if (member.getOwner().equals(newOwner.getOwner())) {
+				System.out.println("Found Repeative Player");
 				return;
+			}
 		}
 		WorldOwners.add(newOwner);
+		//System.out.println("Created new Player");
 	}
 	
 	public void addNewWorld(String entity, WorldObject newWorld) {
 		int i = 0;
 		for(WorldOwnersObject member : WorldOwners) {
-			if (member.getOwner() == entity) {
+			if (member.getOwner().equals(entity)) {
 				WorldOwners.get(i).addWorld(newWorld);
+				System.out.println("Created new World for PLayer");
 			}
+			
 			i++;
 		}
 	}
 	
 	public int getOwnerWorldCount(String entity) {
 		for(WorldOwnersObject member : WorldOwners) {
-			if (member.getOwner() == entity) {
-				return member.getWorlds().toArray().length;
+			if (member.getOwner().equals(entity)) {
+				if (member.getWorlds() != null)
+					return member.getWorlds().toArray().length;
+				return 0;
 			}
 		}
 		return 0;

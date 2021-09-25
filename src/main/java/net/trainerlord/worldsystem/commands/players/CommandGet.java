@@ -4,6 +4,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import main.java.net.trainerlord.worldsystem.api.CreateWorldSystemWorld;
+import main.java.net.trainerlord.worldsystem.containers.PlayerWorldsContainer;
+import main.java.net.trainerlord.worldsystem.objects.PlayerWorldsObject;
+import main.java.net.trainerlord.worldsystem.objects.WorldGameRulesObject;
+import main.java.net.trainerlord.worldsystem.objects.WorldObject;
+
 public class CommandGet {
 	
 	private CommandSender sender;
@@ -43,11 +49,10 @@ public class CommandGet {
 				}
 				
 				
-				//Dependance Config Code
-				
 				//Multi Templates
 				
 				//Create World
+				CreateWorldSystemWorld.createNew(p, 0);
 				
 				p.sendMessage("Created World Successfully");
 				return true;

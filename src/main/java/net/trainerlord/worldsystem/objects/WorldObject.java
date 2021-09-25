@@ -5,7 +5,7 @@ public class WorldObject {
 	private String worldName;
 	private boolean useTemplate;
 	private String templateName;
-	private int seed;
+	private long seed;
 	private String environment;
 	private String worldType;
 	private String generator;
@@ -13,7 +13,7 @@ public class WorldObject {
 	private WorldGameRulesObject gameRules;
 	
 	
-	public WorldObject(String worldName, boolean useTemplate, String templateName, int seed, String environment,
+	public WorldObject(String worldName, boolean useTemplate, String templateName, long seed, String environment,
 			String worldType, String generator, boolean generateNaturalStructures, WorldGameRulesObject gameRules) {
 		super();
 		this.worldName = worldName;
@@ -43,7 +43,7 @@ public class WorldObject {
 	}
 
 
-	public int getSeed() {
+	public long getSeed() {
 		return seed;
 	}
 

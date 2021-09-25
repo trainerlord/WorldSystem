@@ -13,20 +13,21 @@ import org.bukkit.entity.Player;
 import com.google.gson.Gson;
 
 import main.java.net.trainerlord.worldsystem.objects.PlayerWorldsObject;
+import main.java.net.trainerlord.worldsystem.objects.WorldObject;
 import main.java.net.trainerlord.worldsystem.objects.WorldOwnersObject;
 
 public class PlayerWorldsContainer {
 	
 	private PlayerWorldsObject data;
 	
-	public static final File DATA_FILE = new File("plugins//WorldSystem//PlayerWorlds.json");
 	
 	public PlayerWorldsContainer() {
+		File dataFile = new File("plugins//WorldSystem//PlayerWorlds.json");
 		Gson gson = new Gson();
-		if (DATA_FILE.exists()) 
+		if (dataFile.exists()) 
 		{
 			try {
-				Reader reader = Files.newBufferedReader(DATA_FILE.toPath());
+				Reader reader = Files.newBufferedReader(dataFile.toPath());
 				data = gson.fromJson(reader, PlayerWorldsObject.class);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -35,8 +36,10 @@ public class PlayerWorldsContainer {
 			}
 		} else {
 			try {
+				FileWriter fileWriter = new FileWriter("plugins//WorldSystem//PlayerWorlds.json");
 				data = new PlayerWorldsObject(new ArrayList<>());
-				gson.toJson(data, new FileWriter(DATA_FILE));
+				gson.toJson(data, fileWriter);
+				fileWriter.close();
 
 			} catch(IOException e) {
 				System.err.println("Error 202: Unable To Create PlayerWorlds Data File");
@@ -47,9 +50,12 @@ public class PlayerWorldsContainer {
 	}
 	
 	public void SaveData() {
+		File dataFile = new File("plugins//WorldSystem//PlayerWorlds.json");
+		Gson gson = new Gson();
 		try {
-			Gson gson = new Gson();
-			gson.toJson(data, new FileWriter(DATA_FILE));
+			FileWriter fileWriter = new FileWriter("plugins//WorldSystem//PlayerWorlds.json");
+			gson.toJson(data, fileWriter);
+			fileWriter.close();
 
 		} catch(IOException e) {
 			System.err.println("Error 203: Unable To Save PlayerWorlds Data File");
@@ -59,6 +65,24 @@ public class PlayerWorldsContainer {
 	
 	public void AddPlayerOwner(Player p) {
 		data.addWorldOwner(new WorldOwnersObject(p.getUniqueId().toString(), true, null));
+	}
+	
+	public void addNewWorldToPlayer(Player p, WorldObject newWorld) {
+		data.addNewWorld(p.getUniqueId().toString(), newWorld);
+	}
+	
+	public int getOwnersWorldCount(Player p) {
+		return data.getOwnerWorldCount(p.getUniqueId().toString());
+	}
+	
+	public WorldOwnersObject getWorldOwner(Player p) {
+		
+		for(WorldOwnersObject member : data.getWorldOwners()) { 
+			if (member.getOwner() == p.getUniqueId().toString())
+				return member;
+		}
+		
+		return null;
 	}
 
 }

@@ -2,6 +2,10 @@ package main.java.net.trainerlord.worldsystem.objects;
 
 public class WorldGameRulesObject {
 	
+	public WorldGameRulesObject() {
+		
+	}
+
 	 public WorldGameRulesObject(boolean announceAdvancements, boolean disableElytraMovementCheck, boolean disableRaids,
 			boolean doDaylightCycle, boolean doEntityDrops, boolean doFireTick, boolean doInsomnia,
 			boolean doImmediateRespawn, boolean doLimitedCrafting, boolean doMobLoot, boolean doMobSpawning,
@@ -47,6 +51,8 @@ public class WorldGameRulesObject {
 		this.spectatorsGenerateChunks = spectatorsGenerateChunks;
 		this.universalAnger = universalAnger;
 	}
+	 
+	 
 	private boolean announceAdvancements = true;
 	 private boolean disableElytraMovementCheck = false;
 	 private boolean disableRaids = false;
