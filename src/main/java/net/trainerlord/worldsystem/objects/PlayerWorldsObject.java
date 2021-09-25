@@ -18,6 +18,33 @@ public class PlayerWorldsObject {
 		WorldOwners.remove(index);
 	}
 	
+	public void addWorldOwner(WorldOwnersObject newOwner) {
+		for(WorldOwnersObject member : WorldOwners) {
+			if (member.getOwner() == newOwner.getOwner())
+				return;
+		}
+		WorldOwners.add(newOwner);
+	}
+	
+	public void addNewWorld(String entity, WorldObject newWorld) {
+		int i = 0;
+		for(WorldOwnersObject member : WorldOwners) {
+			if (member.getOwner() == entity) {
+				WorldOwners.get(i).addWorld(newWorld);
+			}
+			i++;
+		}
+	}
+	
+	public int getOwnerWorldCount(String entity) {
+		for(WorldOwnersObject member : WorldOwners) {
+			if (member.getOwner() == entity) {
+				return member.getWorlds().toArray().length;
+			}
+		}
+		return 0;
+	}
+	
 	// This is How the Final Compiled Json Should Look
 	// This is Also How I planned out the object Classes
 	
